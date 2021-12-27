@@ -1,0 +1,17 @@
+D:\Thanh_Hung\LTCSDL\QuanLyLop2_ASP.NETCore\QLL.DAL\bin\Debug\net6.0\QLL.DAL.deps.json
+D:\Thanh_Hung\LTCSDL\QuanLyLop2_ASP.NETCore\QLL.DAL\bin\Debug\net6.0\QLL.DAL.runtimeconfig.json
+D:\Thanh_Hung\LTCSDL\QuanLyLop2_ASP.NETCore\QLL.DAL\bin\Debug\net6.0\QLL.DAL.dll
+D:\Thanh_Hung\LTCSDL\QuanLyLop2_ASP.NETCore\QLL.DAL\bin\Debug\net6.0\ref\QLL.DAL.dll
+D:\Thanh_Hung\LTCSDL\QuanLyLop2_ASP.NETCore\QLL.DAL\bin\Debug\net6.0\QLL.DAL.pdb
+D:\Thanh_Hung\LTCSDL\QuanLyLop2_ASP.NETCore\QLL.DAL\obj\Debug\net6.0\QLL.DAL.csproj.AssemblyReference.cache
+D:\Thanh_Hung\LTCSDL\QuanLyLop2_ASP.NETCore\QLL.DAL\obj\Debug\net6.0\QLL.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Thanh_Hung\LTCSDL\QuanLyLop2_ASP.NETCore\QLL.DAL\obj\Debug\net6.0\QLL.DAL.AssemblyInfoInputs.cache
+D:\Thanh_Hung\LTCSDL\QuanLyLop2_ASP.NETCore\QLL.DAL\obj\Debug\net6.0\QLL.DAL.AssemblyInfo.cs
+D:\Thanh_Hung\LTCSDL\QuanLyLop2_ASP.NETCore\QLL.DAL\obj\Debug\net6.0\QLL.DAL.csproj.CoreCompileInputs.cache
+D:\Thanh_Hung\LTCSDL\QuanLyLop2_ASP.NETCore\QLL.DAL\obj\Debug\net6.0\QLL.DAL.dll
+D:\Thanh_Hung\LTCSDL\QuanLyLop2_ASP.NETCore\QLL.DAL\obj\Debug\net6.0\ref\QLL.DAL.dll
+D:\Thanh_Hung\LTCSDL\QuanLyLop2_ASP.NETCore\QLL.DAL\obj\Debug\net6.0\QLL.DAL.pdb
+D:\Thanh_Hung\LTCSDL\QuanLyLop2_ASP.NETCore\QLL.DAL\obj\Debug\net6.0\QLL.DAL.genruntimeconfig.cache
+D:\Thanh_Hung\LTCSDL\QuanLyLop2_ASP.NETCore\QLL.DAL\bin\Debug\net6.0\QLL.DTO.dll
+D:\Thanh_Hung\LTCSDL\QuanLyLop2_ASP.NETCore\QLL.DAL\bin\Debug\net6.0\QLL.DTO.pdb
+D:\Thanh_Hung\LTCSDL\QuanLyLop2_ASP.NETCore\QLL.DAL\obj\Debug\net6.0\QLL.DAL.csproj.CopyComplete

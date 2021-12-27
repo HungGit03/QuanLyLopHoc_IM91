@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "af57d117-86e2-489c-b68f-58580ddef8f8": {
+      "ProjectGuid": "af57d117-86e2-489c-b68f-58580ddef8f8",
+      "DisplayName": "QuanLyLop2_ASP.NETCore",
+      "ColorIndex": 0
+    },
+    "5049a37d-27e6-4c22-9c50-9a5ff2a42f9c": {
+      "ProjectGuid": "5049a37d-27e6-4c22-9c50-9a5ff2a42f9c",
+      "DisplayName": "QLL.DTO",
+      "ColorIndex": 1
+    },
+    "978d4a7e-5d33-4a94-b4c5-eac8452a309e": {
+      "ProjectGuid": "978d4a7e-5d33-4a94-b4c5-eac8452a309e",
+      "DisplayName": "QLL.DAL",
+      "ColorIndex": 2
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "26ede105-6a9d-43bf-a929-15e06409f3d3": {
+      "ProjectGuid": "26ede105-6a9d-43bf-a929-15e06409f3d3",
+      "DisplayName": "QLL.BLL",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}

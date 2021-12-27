@@ -1,0 +1,74 @@
+﻿@page
+@using QLL.DTO
+@using System.Text.Json
+@Html.AntiForgeryToken()
+@model QuanLyLop2_ASP.NETCore.Pages.DiemModel
+@using Microsoft.AspNetCore.Antiforgery
+@inject IAntiforgery antiforgery
+@{
+   var token = antiforgery.GetAndStoreTokens(HttpContext).RequestToken;
+}
+<script type="text/javascript">
+    var dataD = @Html.Raw(JsonSerializer.Serialize(Model.lstd));
+</script>
+<div class="text-center">
+    <h1 class="display-4">Lớp</h1>
+    <p>Danh sách Điểm.</p>
+    <button type="button" onclick="openModalD(null, null);" class="btn btn-outline-primary btn-sm">Thêm điểm</button>
+    <table id="tableD"class="table table-striped">
+        <tr>
+            <th>Mã môn học</th>
+            <th>Mã học sinh</th>
+            <th>Điểm</th>
+            <th>Action</th>
+        </tr>
+        @foreach (DiemDTO m  in Model.lstd)
+        {
+            <tr id="trD_@m.MaMh@m.MaHs">
+                <td>@m.MaMh</td>
+                <td>@m.MaHs</td>
+                <td>@m.Diem</td>
+                <td>
+                    <button type="button" onclick="openModalD(@m.MaMh, '@m.MaHs');" class="btn btn-outline-primary btn-sm">Sửa</button>
+                    <button type="button" onclick="deleteD(@m.MaMh, '@m.MaHs');" class="btn btn-outline-danger btn-sm">xoá</button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div id ="DivModalD" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sửa điểm:  
+            <span id="MaMH"></span>
+            <span id="MaHS"></span>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" onclick="closeModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+            <label for="txtMaMH">Mã môn học</label>
+            <input type="text" class="form-control" id="txtMaMH" aria-describedby="MaMHHelp" placeholder="Mã môn học">
+            <small id="MaMHHelp" class="form-text text-muted">Không được bỏ trống.</small>
+        </div>
+        <div class="form-group">
+            <label for="txtMaHS">Mã học sinh</label>
+            <input type="text" class="form-control" id="txtMaHS" aria-describedby="MaHSHelp" placeholder="Mã học sinh">
+            <small id="MaHSHelp" class="form-text text-muted">Không được bỏ trống.</small>
+        </div>
+        <div class="form-group">
+            <label for="txtDiem">Mã môn học</label>
+            <input type="text" class="form-control" id="txtDiem" aria-describedby="DiemHelp" placeholder="Điểm">
+            <small id="DiemHelp" class="form-text text-muted">Không được bỏ trống.</small>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal()" data-dismiss="modal">Close</button>
+        <button type="button" onclick="saveD()" class="btn btn-primary">Save changes</button>
+      </div>
+      </div>
+    </div>
+   </div>
+</div>

@@ -1,0 +1,113 @@
+﻿@page
+@using QLL.DTO
+@using System.Text.Json
+@Html.AntiForgeryToken()
+@model QuanLyLop2_ASP.NETCore.Pages.HocSinhModel
+@using Microsoft.AspNetCore.Antiforgery
+@inject IAntiforgery antiforgery
+@{
+   var token = antiforgery.GetAndStoreTokens(HttpContext).RequestToken;
+}
+<script type="text/javascript">
+    var dataHS = @Html.Raw(JsonSerializer.Serialize(Model.lstHS));
+</script>
+<div class="text-center">
+    <h1 class="display-4">Lớp</h1>
+    <p>Danh sách học sinh.</p>
+    <button type="button" onclick="openModalHS(null);" class="btn btn-outline-primary btn-sm">Thêm học sinh</button>
+    <table id="tableHS"class="table table-striped">
+        <tr>
+            <th>Mã học sinh</th>
+            <th>Tên học sinh</th>
+            <th>Giới tính</th>
+            <th>Ngày sinh</th>
+            <th>Đia chỉ</th>
+            <th>SĐT</th>
+            <th>Email</th>
+            <th>Mã lớp học</th>
+            <th>Action</th>
+        </tr>
+        @foreach (HocSinhDTO hs in Model.lstHS)
+        {
+            <tr id="trHS_@hs.MaHs">
+                <td>@hs.MaHs</td>
+                <td>@hs.TenHs</td>
+                <td>@hs.GioiTinh</td>
+                <td>@hs.NamSinh</td>
+                <td>@hs.DiaChi</td>
+                <td>@hs.Sdt</td>
+                <td>@hs.Email</td>
+                <td>@hs.MaLop</td>
+                <td>
+                    <button type="button" onclick="openModalHS('@hs.MaHs');" class="btn btn-outline-primary btn-sm">Sửa</button>
+                    <button type="button" onclick="deleteHS('@hs.MaHs');" class="btn btn-outline-danger btn-sm">xoá</button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div id ="DivModalHS" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sửa học sinh: <span id="MaHS"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" onclick="closeModalHS()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="txtMaHS">Mã học sinh</label>
+            <input type="text" class="form-control" id="txtMaHS" aria-describedby="MaHSHelp" placeholder="Mã học sinh: hs...">
+            <small id="MaHSHelp" class="form-text text-muted">Không được bỏ trống, 5 kí tự.</small>
+        </div>
+        <div class="form-group">
+            <label for="txtTenHS">Tên Học Sinh</label>
+            <input type="text" class="form-control" id="txtTenHS" aria-describedby="TenHSHelp" placeholder="Tên học sinh">
+            <small id="TenHSHelp" class="form-text text-muted">Không được bỏ trống.</small>
+        </div>
+        <div class="form-group">
+            <label for="txtNS">Ngày sinh</label>
+            <input type="date" class="form-control" id="txtNS" value="2000-01-01"
+                 aria-describedby="PhongHocHelp">
+            <small id="NSHelp" class="form-text text-muted">Không được bỏ trống.</small>
+        </div>
+        <div class="form-group">
+            <label for="selGT">Giới tính</label>
+            <select class="form-control" id="selGT">
+                <option>Nam</option>
+                <option>Nữ</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="txtDiaChi">Địa chỉ</label>
+            <input type="text" class="form-control" id="txtDiaChi" aria-describedby="DiaChiHelp" placeholder="Địa chỉ">
+            <small id="DiaChiHelp" class="form-text text-muted">Không được bỏ trống.</small>
+        </div>
+        <div class="form-group">
+            <label for="txtSDT">Số điện thoại</label>
+            <input type="text" class="form-control" id="txtSDT" aria-describedby="SDTlHelp" placeholder="Số điện thoại">
+            <small id="SDTHelp" class="form-text text-muted">Không được bỏ trống.</small>
+        </div>
+        <div class="form-group">
+            <label for="txtEmail">Email</label>
+            <input type="email" class="form-control" id="txtEmail" aria-describedby="DiaChiHelp" placeholder="Địa chỉ email">
+            <small id="EmailHelp" class="form-text text-muted">Không được bỏ trống.</small>
+        </div>
+        <div class="form-group">
+            <label for="selML">Mã lớp</label>
+            <select class="form-control-sm" id="selML">
+                @foreach(var l in Model.lstLop)
+                {
+                    <option>@l.MaLop</option>            
+                }
+                    </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal()" data-dismiss="modal">Close</button>
+        <button type="button" onclick="saveHS()" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

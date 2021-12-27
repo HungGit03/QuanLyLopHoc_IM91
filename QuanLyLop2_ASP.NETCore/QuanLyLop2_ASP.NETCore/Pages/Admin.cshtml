@@ -1,0 +1,102 @@
+﻿@page
+@using QLL.DTO
+@using System.Text.Json
+@Html.AntiForgeryToken()
+@model QuanLyLop2_ASP.NETCore.Pages.AdminModel
+@using Microsoft.AspNetCore.Antiforgery
+@inject IAntiforgery antiforgery
+@{
+   var token = antiforgery.GetAndStoreTokens(HttpContext).RequestToken;
+}
+<script type="text/javascript">
+    var dataAd = @Html.Raw(JsonSerializer.Serialize(Model.lstAd));
+</script>
+<div class="text-center">
+    <h1 class="display-4">Lớp</h1>
+    <p>Danh sách Admin.</p>
+    <button type="button" onclick="openModalAd(null);" class="btn btn-outline-primary btn-sm">Thêm admin</button>
+    <table id="tableAd"class="table table-striped">
+        <tr>
+            <th>Mã Admin</th>
+            <th>Tên Admin</th>
+            <th>Giới tính</th>
+            <th>Ngày sinh</th>
+            <th>Đia chỉ</th>
+            <th>SĐT</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+        @foreach (AdminDTO ad in Model.lstAd)
+        {
+            <tr id="trAd_@ad.MaAdmin">
+                <td>@ad.MaAdmin</td>
+                <td>@ad.TenAdmin</td>
+                <td>@ad.GioiTinh</td>
+                <td>@ad.NgaySinh</td>
+                <td>@ad.DiaChi</td>
+                <td>@ad.Sdt</td>
+                <td>@ad.Email</td>
+                <td>
+                    <button type="button" onclick="openModalAd('@ad.MaAdmin');" class="btn btn-outline-primary btn-sm">Sửa</button>
+                    <button type="button" onclick="deleteAd('@ad.MaAdmin');" class="btn btn-outline-danger btn-sm">xoá</button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div id ="DivModalAd" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sửa admin: <span id="MaAd"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" onclick="closeModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="txtMaAd">Mã admin</label>
+            <input type="text" class="form-control" id="txtMaAd" aria-describedby="MaAdHelp" placeholder="Mã admin: ad...">
+            <small id="MaAdHelp" class="form-text text-muted">Không được bỏ trống, 5 kí tự.</small>
+        </div>
+        <div class="form-group">
+            <label for="txtTenAd">Tên admin</label>
+            <input type="text" class="form-control" id="txtTenAd" aria-describedby="TenAdHelp" placeholder="Tên admin">
+            <small id="TenAdHelp" class="form-text text-muted">Không được bỏ trống.</small>
+        </div>
+        <div class="form-group">
+            <label for="txtNS">Ngày sinh</label>
+            <input type="date" class="form-control" id="txtNS" value="2000-01-01"
+                 aria-describedby="PhongHocHelp">
+            <small id="NSHelp" class="form-text text-muted">Không được bỏ trống.</small>
+        </div>
+        <div class="form-group">
+            <label for="selGT">Giới tính</label>
+            <select class="form-control" id="selGT">
+                <option>Nam</option>
+                <option>Nữ</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="txtDiaChi">Địa chỉ</label>
+            <input type="text" class="form-control" id="txtDiaChi" aria-describedby="DiaChiHelp" placeholder="Địa chỉ">
+            <small id="DiaChiHelp" class="form-text text-muted">Không được bỏ trống.</small>
+        </div>
+        <div class="form-group">
+            <label for="txtSDT">Số điện thoại</label>
+            <input type="text" class="form-control" id="txtSDT" aria-describedby="SDTlHelp" placeholder="Số điện thoại">
+            <small id="SDTHelp" class="form-text text-muted">Không được bỏ trống.</small>
+        </div>
+        <div class="form-group">
+            <label for="txtEmail">Email</label>
+            <input type="email" class="form-control" id="txtEmail" aria-describedby="DiaChiHelp" placeholder="Địa chỉ email">
+            <small id="EmailHelp" class="form-text text-muted">Không được bỏ trống.</small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal()" data-dismiss="modal">Close</button>
+        <button type="button" onclick="saveAd()" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
