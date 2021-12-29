@@ -1,0 +1,73 @@
+﻿@page
+@using QLL.DTO
+@using System.Text.Json
+@Html.AntiForgeryToken()
+@model QuanLyLop2_ASP.NETCore.Pages.TaiKhoanGVModel
+@using Microsoft.AspNetCore.Antiforgery
+@inject IAntiforgery antiforgery
+@{
+   var token = antiforgery.GetAndStoreTokens(HttpContext).RequestToken;
+}
+<script type="text/javascript">
+    var dataTKGV = @Html.Raw(JsonSerializer.Serialize(Model.lstTKGV));
+</script>
+<div class="text-center">
+    <h1 class="display-4">Lớp</h1>
+    <p>Danh tài khoản Giáo viên.</p>
+    <button type="button" onclick="openModalTKGV(null);" class="btn btn-outline-primary btn-sm">Thêm Tài khoản giáo viên</button>
+    <table id="tableTKGV"class="table table-striped">
+        <tr>
+            <th>Mã tài khoản</th>
+            <th>Tên đăng nhập</th>
+            <th>Mật khẩu</th>
+            <th>Mã giáo viên</th>
+            <th>Action</th>
+        </tr>
+        @foreach (TaiKhoanGVDTO tkgv in Model.lstTKGV)
+        {
+            <tr id="trTKGV_@tkgv.MaTk">
+                <td>@tkgv.MaTk</td>
+                <td>@tkgv.TenDangNhap</td>
+                <td>@tkgv.MatKhau</td>
+                <td>@tkgv.MaGv</td>
+                <td>
+                    <button type="button" onclick="openModalTKGV(@tkgv.MaTk);" class="btn btn-outline-primary btn-sm">Sửa</button>
+                    <button type="button" onclick="deleteTKHS(@tkgv.MaTk);" class="btn btn-outline-danger btn-sm">xoá</button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div id ="DivModalTKGV" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sửa Tài khoản: <span id="MaTKGV"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" onclick="closeModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+            <label for="txtTDN">Tên đăng nhập</label>
+            <input type="text" class="form-control" id="txtTDN" aria-describedby="TDNHelp" placeholder="Tên Đăng nhập">
+            <small id="TDNHelp" class="form-text text-muted">Không được bỏ trống.</small>
+        </div>
+        <div class="form-group">
+            <label for="txtMK">Mật khẩu</label>
+            <input type="text" class="form-control" id="txtMK" aria-describedby="MKHelp" placeholder="Nhập mật khẩu">
+            <small id="MKHelp" class="form-text text-muted">Không được bỏ trống.</small>
+        </div>
+        <div class="form-group">
+            <label for="txtMaGv">Mật khẩu</label>
+            <input type="text" class="form-control" id="txtMaGV" aria-describedby="MaGVHelp" placeholder="Nhập nã giáo viên">
+            <small id="MaGVHelp" class="form-text text-muted">Không được bỏ trống.</small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal()" data-dismiss="modal">Close</button>
+        <button type="button" onclick="saveTKGV()" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
